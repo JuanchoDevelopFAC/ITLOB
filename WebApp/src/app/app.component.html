@@ -1,0 +1,55 @@
+<div class="main">
+  <mat-card class="card">
+    <div class="card__input">
+      <span class="title">{{ title | uppercase }}</span>
+      <input
+          [(ngModel)]="filterValue"
+          type="text"
+          placeholder="Buscar empleado"
+          class="input-form">
+    </div>
+      <button
+          class="button-form"
+          (click)="getEmployees(filterValue)">
+          Obtener empleados
+      </button>
+  </mat-card>
+
+  <table *ngIf="dataSource.length > 0" mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="typeContract">
+      <th mat-header-cell *matHeaderCellDef>Contract Type</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.contractTypeName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="roleId">
+      <th mat-header-cell *matHeaderCellDef>Role ID</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.roleId }}</td>
+    </ng-container>
+    <ng-container matColumnDef="roleName">
+      <th mat-header-cell *matHeaderCellDef>Role Name</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.roleName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="roleDescription">
+      <th mat-header-cell *matHeaderCellDef>Role Description</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.roleDescription }}</td>
+    </ng-container>
+    <ng-container matColumnDef="hourlySalary">
+      <th mat-header-cell *matHeaderCellDef>Hourly Salary</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.hourlySalary }}</td>
+    </ng-container>
+    <ng-container matColumnDef="monthlySalary">
+      <th mat-header-cell *matHeaderCellDef>Monthly Salary</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.monthlySalary }}</td>
+    </ng-container>
+    <ng-container matColumnDef="annuallySalary">
+      <th mat-header-cell *matHeaderCellDef>Annually Salary</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.annuallySalary }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
